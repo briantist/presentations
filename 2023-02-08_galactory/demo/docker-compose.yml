@@ -1,0 +1,24 @@
+---
+version: '3'
+
+services:
+  artifactory:
+    container_name: artifactory
+    image: docker.bintray.io/jfrog/artifactory-oss:latest
+    ports:
+      - 8081:8081
+      - 8082:8082
+    volumes:
+      - ./config:/artifactory_extra_conf
+  galactory:
+    container_name: galactory
+    image: ghcr.io/briantist/galactory:latest
+    ports:
+      - 5555:5555
+    env_file:
+      - /tmp/galart.env
+    environment:
+      - GALACTORY_PROXY_UPSTREAM=https://galaxy.ansible.com
+    command:
+      - --artifactory-path=http://artifactory:8081/artifactory/ansible-collections
+      - --health-check-custom-text=Contrib Summit 2023
