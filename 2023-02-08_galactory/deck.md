@@ -1,7 +1,7 @@
 ---
 marp: true
 theme: gaia
-footer: https://github.com/briantist/presentations/
+footer: https://www.briantist.com/presentations/galactory/
 ---
 
 # galactory
